@@ -82,6 +82,10 @@ You must know the name of the Kubernetes node you're going to use as the "main" 
 ```
 kubectl get nodes -o wide
 ```
+Now first add the aerIOS repo to your helm:
+```
+helm repo add eclipse-aerios https://eclipse-aerios.github.io/resources/charts
+```
 You can install IOTA in the main domain using the command:
 ```
 helm install iota eclipse-aerios/iota --set isMainDomain=true --set mainIE=<main_IE_Node>
