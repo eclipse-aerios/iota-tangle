@@ -84,7 +84,7 @@ kubectl get nodes -o wide
 ```
 You can install IOTA in the main domain using the command:
 ```
-helm install iota aeros-common/iota --set isMainDomain=true --set mainIE=<main_IE_Node>
+helm install iota eclipse-aerios/iota --set isMainDomain=true --set mainIE=<main_IE_Node>
 ```
 The Helm installation includes an autopeering module that automatically connects all peers in a cluster, if it fails for whatever reason, you can manually peer the hornets:
   1. Launch the command ```kubectl get pods -o wide``` to retrieve the secondary hornet nodes, they should look something like ```iota-hornet-tdp5z```
@@ -100,7 +100,7 @@ There is only one difference, since this is not the main domain a coordinator wi
 
 Install IOTA using the following command:
 ```
-helm install iota aeros-common/iota --set isMainDomain=false --set mainIE=<main_IE_Node>
+helm install iota eclipse-aerios/iota --set isMainDomain=false --set mainIE=<main_IE_Node>
 ```
 If you need to manually peer the nodes please follow the previous steps above.
 
@@ -138,7 +138,7 @@ curl -i -k --location 'http://*API_IP*:30634/upload?node=iota-hornet' \
 
 Additionally, an endpoint has been opened in KrakenD to upload from outside the cluster, you can do it with the following POST:
 ```
-curl -i -k --location 'http://cf-mvp-domain.aeros-project.eu/iota_api?node=iota-hornet' \
+curl -i -k --location 'http://my-domain.aerios-project.eu/iota_api?node=iota-hornet' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: ••••••' \
 --data '{
