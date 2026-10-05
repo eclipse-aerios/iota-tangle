@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 
 services:
 
@@ -60,3 +60,7 @@ services:
       - "--prometheus.processMetrics=false"
       - "--prometheus.promhttpMetrics=false"
       - "--profiling.enabled=false"
+
+networks:
+  default:
+    name: iota-net
