@@ -14,11 +14,9 @@ services:
     volumes:
       - ./privatedb/state:/app/state
     command:
-      - "--inx.address=IP_OF_THE_HORNET_NODE:9029"
+      - "--inx.address=iota-hornet:9029"
       - "--coordinator.stateFilePath=state/coordinator.state"
       - "--coordinator.blockBackups.enabled=false"
-      - "--profiling.enabled=true"
-      - "--profiling.bindAddress=IP_TO_ENABLE_PROFILING:6060"
 
   ## THIS IS THE BASE HORNET NODE
   ## If you wish to add more hornets, reuse this code below
@@ -33,6 +31,8 @@ services:
       - "6011:6060/tcp"
     volumes:
       - ../config_private_tangle.json:/app/config_private_tangle.json:ro
+      - ./privatedb/hornet:/app/privatedb
+      - ./snapshots/hornet:/app/snapshots
     command: 
       - "-c"
       - "config_private_tangle.json"
@@ -55,7 +55,6 @@ services:
       - "--dashboard.bindAddress=0.0.0.0:8081"
       - "--dashboard.auth.passwordHash=577eb97f8faf2af47ff957b00827d6bfe9d05b810981e3073dc42553505282c1"
       - "--dashboard.auth.passwordSalt=e5d8d0bd3bb9723236177b4713a11580c55b69a51e7055dd11fa1dad3b8f6d6c"
-      - "--dashboard.auth.identityPrivateKey=0fce8eb09ff4aa206e23f1b228cf44ff0ffd3cd093c39ccd54f5ad598ce38f97a51b8a9186847f0523974d642b4d67c5a5db50dab77e2d3c27d8f6c564ba97fe"
       - "--prometheus.enabled=false"
       - "--prometheus.goMetrics=false"
       - "--prometheus.processMetrics=false"

@@ -3,12 +3,16 @@ The required files to execute the necessary IOTA components for a private Tangle
 
 This deployment is made with the idea that you'll launch at least one deployment of IOTA in a "Main" cluster, and optionally any additional clusters as necessary. There are two ways of installing IOTA, via Docker or via Helm. we will cover both here.
 
-**REMEMBER TO CHANGE THE COORDINATOR KEYS AND THE DASHBOARD VALUES (COO_PRV_KEYS, identityPrivateKey).** These keys are in Ed25519 and to generate them you can use the same procedure you'd use for any SSH key:
+**REMEMBER TO CHANGE THE COORDINATOR KEYS AND THE DASHBOARD VALUES (COO_PRV_KEYS, identityPrivateKey).** These keys are in Ed25519 and to generate them you can use the same procedure you'd use for any SSH key. Also you can change them using the Hornet node:
 ```
-openssl genpkey -algorithm ED25519 -out key.pem
-openssl pkey -in key.pem -text -noout
+docker run --rm iotaledger/hornet:2.0 tool ed25519-key
 ```
 Additionally, the dashboard SALT keys should also be changed, you can get new ones here: https://generate-random.org/salts
+
+Or by using the Hornet node again:
+```
+docker run --rm -it iotaledger/hornet:2.0 tool pwd-hash
+```
 
 **We reccomend the Helm installation due to simplicity and ease of setup.** All the relevant fields to edit are in the ```values.yaml``` file, while in the docker installation they're spread out across all JSON files.
 
@@ -23,6 +27,7 @@ Additionally, the dashboard SALT keys should also be changed, you can get new on
 ```
 ./docker/main/hornet-main.yaml
 ./docker/main/startup.yaml
+./docker/config_private_tangle.json
 ./docker/secondary/hornet-secondary.yaml
 ```
 
