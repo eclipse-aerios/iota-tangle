@@ -39,7 +39,7 @@ sudo ./main/bootstrap.sh
 
 This will execute the cleanup if necessary, and run the startup. You must launch hornet-main files manually now.
 ```
-docker-compose -f ./main/hornet-main.yaml
+docker-compose -f ./main/hornet-main.yaml up -d
 ```
 Additionally, 2 extra components can be installed, the AutoPeerer to remove the manual peering of the Hornets and the API to upload blocks into the Tangle, **the API is mandatory**. You can find them below:
   1. [Autopeerer](https://github.com/eclipse-aerios/iota-tangle-peerer) - Simply run the MakeFile: ```make```. Further information can be found in its own Readme.
@@ -50,7 +50,7 @@ Additionally, 2 extra components can be installed, the AutoPeerer to remove the 
 ### Secondary cluster
 In this cluster the bootstrap does not need to be run, simply execute a docker-compose command.
 ```
-docker-compose -f ./secondary/hornet-secondary.yaml
+docker-compose -f ./secondary/hornet-secondary.yaml up -d
 ```
 
 ### Testing
